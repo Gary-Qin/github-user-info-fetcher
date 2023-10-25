@@ -1,11 +1,18 @@
-// document.getElementById("myForm").addEventListener("submit", function(event) {
-//     event.preventDefault();
-//     let username = document.getElementById("ghname").value;
+const app = document.getElementById('app');
 
-//     try {
-//         const job = fetch(`https://api.github.com/users/${username}`)
-//         console.log(job);
-//     } catch (error) {
-//         console.log("Error");
-//     }   
-// });
+// Creating components
+function Header() {
+    return <h1>Hello</h1>;
+}
+
+// Nesting components
+function HomePage() {
+    return (
+        <div>
+            <Header />
+        </div>
+    )
+}
+
+// Rendering components
+ReactDOM.render(<HomePage />, app);
