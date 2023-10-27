@@ -3,17 +3,20 @@ const app = document.getElementById('app');
 function MyForm() {
     const [username, setUsername] = React.useState("");
 
-    function getUser(u) {
-        return fetch(`https://api.github.com/users/${u}`)
-        .then(response => response.json())
-        .then(response => {return response;})
-    }
+    // function getUser(u) {
+    //     return fetch(`https://api.github.com/users/${u}`)
+    //     .then(response => response.json())
+    //     .then(response => {return response;})
+    // }
 
     function handleClick(e) {
         e.preventDefault();
-        let user = await getUser(username);
-        setState
+        const form = e.target;
+        const formData = new FormData(form);
 
+        const formJson = Object.fromEntries(formData.entries());
+        console.log(formJson);
+        setUsername(formJson.githubUsername);
     }
 
     return (
