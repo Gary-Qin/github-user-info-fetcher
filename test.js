@@ -2,6 +2,7 @@ const app = document.getElementById('app');
 
 function MyForm() {
     const [username, setUsername] = React.useState("");
+    const [followers, setFollowers] = React.useState("");
 
     // function getUser(u) {
     //     return fetch(`https://api.github.com/users/${u}`)
@@ -11,12 +12,16 @@ function MyForm() {
 
     function handleClick(e) {
         e.preventDefault();
+    
         const form = e.target;
         const formData = new FormData(form);
-
         const formJson = Object.fromEntries(formData.entries());
-        console.log(formJson);
-        setUsername(formJson.githubUsername);
+        fetch(`https://api.github.com/users/${formJson.githubUsername}`)
+            .then(res => res.json())
+            .then(data => {
+                setUsername(data.name)
+                setFollowers(data.followers)
+            })
     }
 
     return (
@@ -28,7 +33,8 @@ function MyForm() {
                 </label>
                 <button type="submit">Submit</button>
             </form>
-            <p>https://api.github.com/users/{username}</p>
+            <p>Name: {username}</p>
+            <p>Followers: {followers}</p>
         </div>
     )
 }
