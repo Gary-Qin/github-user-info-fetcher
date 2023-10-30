@@ -3,12 +3,7 @@ const app = document.getElementById('app');
 function MyForm() {
     const [username, setUsername] = React.useState("");
     const [followers, setFollowers] = React.useState("");
-
-    // function getUser(u) {
-    //     return fetch(`https://api.github.com/users/${u}`)
-    //     .then(response => response.json())
-    //     .then(response => {return response;})
-    // }
+    const [saved, setSaved] = React.useState([])
 
     function handleClick(e) {
         e.preventDefault();
@@ -24,17 +19,41 @@ function MyForm() {
             })
     }
 
+    function saveUser() {
+        console.log(saved)
+        if(!saved.includes(username) && username != null) {
+            setSaved(oldArray => [...oldArray, username]);
+        }        
+    }
+
+    function SavedUser({ value }) {
+        return (
+            <div>
+                {value}
+            </div>
+        );
+    }
+
     return (
         <div>
-            <form onSubmit={handleClick}>
-                <label>
-                    GitHub Username: <br></br>
-                    <input name="githubUsername"/>
-                </label>
-                <button type="submit">Submit</button>
-            </form>
-            <p>Name: {username}</p>
-            <p>Followers: {followers}</p>
+            <div>
+                <form onSubmit={handleClick}>
+                    <label>
+                        GitHub Username: <br></br>
+                        <input name="githubUsername"/>
+                    </label><br></br>
+                    <button type="submit">Submit</button>
+                </form>
+                <button onClick={saveUser}>Save</button>
+                <p>Name: {username}</p>
+                <p>Followers: {followers}</p>
+            </div>
+            <div>
+                <h2>Saved:</h2>
+                <SavedUser value={saved[0]}/>
+                <SavedUser value={saved[1]}/>
+                <SavedUser value={saved[2]}/>
+            </div>
         </div>
     )
 }
