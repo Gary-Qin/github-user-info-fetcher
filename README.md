@@ -1,1 +1,2 @@
-# weather-app
+# github-user-info-fetcher
+
