@@ -20,10 +20,9 @@ function MyForm() {
     }
 
     function handleSave() {
-        if(!saved.includes(username) && username != null) {
+        if(!saved.includes(username) && username != null && saved.length < 3) {
             setSaved(oldArray => [...oldArray, username]);
         }      
-        console.log(saved)  
     }
 
     function handleRemove(value) {
@@ -46,7 +45,6 @@ function MyForm() {
                 </div>
             );
         }
-        
     }
 
     return (
