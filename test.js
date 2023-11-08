@@ -39,27 +39,27 @@ function MyForm() {
         console.log(saved);
     }
 
-    function handleRemove(value) {
-        setSaved(saved.filter(a => a.name !== saved[value].name));
-        console.log(saved);
-    }
-
-    // function SavedUser({ value }) {
-    //     if(!saved[value]) { 
-    //         return (
-    //             <div>
-    //                 {saved[value].name}
-    //             </div>
-    //         );
-    //     } else {
-    //         return (
-    //             <div>
-    //                 {saved[value].name}
-    //                 <button onClick={() => handleRemove(value)}>Remove</button>
-    //             </div>
-    //         );
-    //     }
+    // function handleRemove(value) {
+    //     setSaved(saved.filter(a => a.name !== saved[value].name));
+    //     console.log(saved);
     // }
+
+    function SavedUser({ value }) {
+        if(!saved[value]) { 
+            return (
+                <div>
+                    {saved[value].name}
+                </div>
+            );
+        } else {
+            return (
+                <div>
+                    {saved[value].name}
+                    <button onClick={() => handleRemove(value)}>Remove</button>
+                </div>
+            );
+        }
+    }
 
     return (
         <div>
