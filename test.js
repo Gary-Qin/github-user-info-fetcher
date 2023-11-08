@@ -39,10 +39,13 @@ function MyForm() {
             );
         } else {
             return (
-                <div>
-                    {saved[value]}
-                    <button onClick={() => handleRemove(value)}>Remove</button>
-                </div>
+                <a href="url">
+                    <div>
+                        {saved[value]}
+                        <button onClick={() => handleRemove(value)}>Remove</button>
+                    </div>
+                </a>
+                
             );
         }
     }
