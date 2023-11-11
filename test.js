@@ -17,16 +17,13 @@ function MyForm() {
             .then(res => res.json())
             .then(data => {
                 setCurName(data.name)
-                setCurLogin(data.login)
+                setCurLogin(data.html_url)
                 setCurFollowers(data.followers)
                 setCurAvatar(data.avatar_url);
             })
     }
 
     function handleSave() {
-        // if(!saved.includes(username) && username != null && saved.length < 3) {
-        //     setSaved(oldArray => [...oldArray, {name: username,}]);
-        // }
         let exists = 0;
         for(const i of saved) {
             if(i.name == curName) {
@@ -39,26 +36,23 @@ function MyForm() {
         console.log(saved);
     }
 
-    // function handleRemove(value) {
-    //     setSaved(saved.filter(a => a.name !== saved[value].name));
-    //     console.log(saved);
-    // }
+    function handleRemove(value) {
+        setSaved(saved.filter(a => a.name !== saved[value].name));
+        console.log(saved);
+    }
 
     function SavedUser({ value }) {
-        if(!saved[value]) { 
-            return (
-                <div>
-                    {saved[value].name}
-                </div>
-            );
-        } else {
-            return (
-                <div>
-                    {saved[value].name}
-                    <button onClick={() => handleRemove(value)}>Remove</button>
-                </div>
-            );
+        if(!saved[value]) {
+            return null;
         }
+        return (
+            <div>
+                <img src={saved[value].avatar} width="50" height="50"/>
+                <a href={saved[value].login}>{saved[value].name}</a>
+                <p>Followers: {saved[value].followers}</p>
+                <button onClick={() => handleRemove(value)}>Remove</button>
+            </div>
+        );
     }
 
     return (
@@ -75,12 +69,12 @@ function MyForm() {
                 <p>Name: {curName}</p>
                 <p>Followers: {curFollowers}</p>
             </div>
-            {/* <div>
+            <div>
                 <h2>Saved:</h2>
                 <SavedUser value={0}/>
                 <SavedUser value={1}/>
                 <SavedUser value={2}/>
-            </div> */}
+            </div>
         </div>
     )
 }
